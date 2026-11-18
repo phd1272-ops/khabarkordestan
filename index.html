@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پایگاه خبری زاگرس</title>
+
+<!-- آیکون‌ها -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- فونت فارسی -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+
+<style>
+/* ================= متغیرها ================= */
+:root{
+  --bg:#eef2f7;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --primary:#1e3a8a;
+  --primary-2:#2563eb;
+  --accent:#f59e0b;
+  --radius:16px;
+  --shadow:0 8px 26px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Vazirmatn',Tahoma,sans-serif;
+  background:var(--bg); color:var(--text);
+  line-height:1.9;
+}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,textarea,select{font-family:inherit}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 16px}
+
+/* ================= هدر ================= */
+.site-header{
+  background:linear-gradient(135deg,#0f172a,#1e3a8a 55%,#2563eb);
+  color:#fff;
+  box-shadow:0 4px 20px rgba(15,23,42,.25);
+  position:sticky; top:0; z-index:50;
+}
+.header-inner{
+  display:flex; align-items:center; gap:18px;
+  padding:14px 16px;
+}
+/* لوگو - گوشه سمت راست */
+.logo-wrap{flex-shrink:0}
+.logo-box{
+  width:74px;height:74px;border-radius:16px;
+  background:rgba(255,255,255,.12);
+  border:2px dashed rgba(255,255,255,.45);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;cursor:pointer;transition:.25s;
+}
+.logo-box:hover{background:rgba(255,255,255,.22);border-color:#fff;transform:scale(1.04)}
+.logo-box img{width:100%;height:100%;object-fit:cover}
+.logo-ph{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;opacity:.9}
+.logo-ph i{font-size:20px}
+
+.brand{flex:1;text-align:center}
+.brand h1{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.brand h1 span{color:var(--accent)}
+.brand p{font-size:12.5px;opacity:.8}
+
+.header-tools{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.clock{font-size:12.5px;opacity:.85;direction:ltr;font-variant-numeric:tabular-nums}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;border-radius:12px;font-size:13.5px;font-weight:600;
+  transition:.2s; white-space:nowrap;
+}
+.btn-ghost{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3)}
+.btn-ghost:hover{background:rgba(255,255,255,.28)}
+.btn-primary{background:var(--primary-2);color:#fff}
+.btn-primary:hover{background:#1d4ed8}
+.btn-danger{background:#ef4444;color:#fff}
+.btn-danger:hover{background:#dc2626}
+
+/* ================= نوار دسته‌بندی ================= */
+.cat-nav{background:rgba(0,0,0,.22);border-top:1px solid rgba(255,255,255,.12)}
+.nav-inner{display:flex;gap:6px;overflow-x:auto;padding:8px 16px}
+.cat-btn{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 15px;border-radius:11px;font-size:13.5px;font-weight:600;
+  color:rgba(255,255,255,.85);transition:.2s;white-space:nowrap;position:relative;
+}
+.cat-btn i{font-size:14px;color:var(--c,#fff)}
+.cat-btn:hover{background:rgba(255,255,255,.14);color:#fff}
+.cat-btn.active{background:#fff;color:var(--primary)}
+.cat-btn.active i{color:var(--c)}
+
+/* زیرمنو پزشکی */
+.dropdown{position:relative}
+.dropdown-menu{
+  position:absolute;top:calc(100% + 8px);right:0;min-width:230px;
+  background:#fff;color:var(--text);border-radius:14px;box-shadow:var(--shadow);
+  padding:8px;display:none;z-index:60;border:1px solid var(--line);
+}
+.dropdown.open .dropdown-menu{display:block}
+.dropdown-menu button{
+  display:flex;align-items:center;gap:9px;width:100%;text-align:right;
+  padding:9px 12px;border-radius:9px;font-size:13px;transition:.15s;
+}
+.dropdown-menu button:hover{background:#eff6ff;color:var(--primary-2)}
+.dropdown-menu button i{color:#ef4444;font-size:12px}
+
+/* ================= بنر / بارگذاری عکس وسط سایت ================= */
+main{padding:26px 0 50px}
+.hero{margin-bottom:34px}
+.hero-box{
+  position:relative;border-radius:22px;overflow:hidden;
+  min-height:330px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#dbeafe,#eff6ff);
+  border:3px dashed #93c5fd;cursor:pointer;transition:.25s;
+}
+.hero-box:hover{border-color:var(--primary-2);background:linear-gradient(135deg,#dbeafe,#e0f2fe)}
+.hero-box img{width:100%;height:100%;min-height:330px;object-fit:cover;position:absolute;inset:0}
+.hero-ph{text-align:center;padding:30px;color:#1e40af;position:relative;z-index:2}
+.hero-ph i{font-size:52px;opacity:.65}
+.hero-ph h3{margin-top:10px;font-size:19px;font-weight:800}
+.hero-ph p{font-size:13px;color:#3b82f6;margin-top:4px}
+.hero-del{
+  position:absolute;top:14px;left:14px;z-index:5;
+  background:rgba(239,68,68,.92);color:#fff;width:38px;height:38px;border-radius:50%;
+  display:none;align-items:center;justify-content:center;
+}
+.hero-box.has-img .hero-del{display:flex}
+
+/* ================= عنوان بخش‌ها ================= */
+.section-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:18px;gap:12px;flex-wrap:wrap;
+}
+.section-head h2{
+  font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px;
+}
+.section-head h2::before{
+  content:'';width:5px;height:24px;border-radius:4px;
+  background:linear-gradient(180deg,var(--primary-2),var(--accent));
+}
+.clear-filter{
+  font-size:12.5px;color:var(--primary-2);background:#dbeafe;
+  padding:6px 12px;border-radius:20px;font-weight:600;display:none;
+}
+.clear-filter.show{display:inline-block}
+
+/* ================= شبکه اخبار ================= */
+.news-grid{
+  display:grid;gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+}
+.news-card{
+  background:var(--card);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--line);
+  transition:.25s;display:flex;flex-direction:column;
+}
+.news-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(15,23,42,.14)}
+.news-img{height:170px;overflow:hidden;background:#e2e8f0}
+.news-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.news-card:hover .news-img img{transform:scale(1.07)}
+.news-body{padding:16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+  font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:20px;
+  color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff);
+}
+.news-body h3{font-size:15.5px;font-weight:800;line-height:1.7}
+.news-body p{font-size:13px;color:var(--muted);flex:1}
+.news-foot{font-size:11.5px;color:#94a3b8;display:flex;gap:14px;border-top:1px solid var(--line);padding-top:10px}
+.empty{grid-column:1/-1;text-align:center;padding:50px;color:var(--muted)}
+
+/* ================= بخش پزشکی ================= */
+.medical-section{margin-top:46px}
+.disease-grid{
+  display:grid;gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+}
+.disease-card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:16px;text-align:right;display:flex;align-items:center;gap:12px;
+  box-shadow:var(--shadow);transition:.22s;
+}
+.disease-card:hover{border-color:#fca5a5;transform:translateY(-4px)}
+.disease-card .ico{
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:#fee2e2;color:#ef4444;font-size:18px;
+}
+.disease-card h4{font-size:14px;font-weight:800}
+.disease-card small{font-size:11.5px;color:var(--muted)}
+
+/* ================= تماس با ما ================= */
+.contact{margin-top:50px}
+.contact-wrap{
+  background:var(--card);border-radius:20px;box-shadow:var(--shadow);
+  border:1px solid var(--line);padding:26px;
+  display:grid;gap:26px;grid-template-columns:1fr 1.2fr;
+}
+.contact-info h3{font-size:18px;font-weight:800;margin-bottom:10px}
+.contact-info p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.contact-info ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.contact-info li{display:flex;align-items:center;gap:11px;font-size:13.5px}
+.contact-info li i{
+  width:36px;height:36px;border-radius:10px;background:#eff6ff;color:var(--primary-2);
+  display:flex;align-items:center;justify-content:center;
+}
+.form-grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+.field label{font-size:12.5px;font-weight:700;color:#334155}
+.field input,.field textarea{
+  padding:11px 14px;border-radius:11px;border:1.5px solid var(--line);
+  font-size:13.5px;background:#f8fafc;transition:.2s;outline:none;
+}
+.field input:focus,.field textarea:focus{border-color:var(--primary-2);background:#fff;box-shadow:0 0 0 4px rgba(37,99,235,.1)}
+.field textarea{resize:vertical;min-height:110px}
+.form-note{font-size:11.5px;color:#94a3b8;margin-top:8px}
+.alert{
+  margin-top:12px;padding:11px 15px;border-radius:11px;font-size:13px;font-weight:600;
+  background:#dcfce7;color:#15803d;display:none;
+}
+.alert.show{display:block}
+
+/* ================= فوتر ================= */
+footer{
+  background:#0f172a;color:#cbd5e1;padding:30px 0;margin-top:50px;
+  text-align:center;font-size:13px;
+}
+footer strong{color:#fff}
+
+/* ================= داشبورد ================= */
+.modal{
+  position:fixed;inset:0;background:rgba(15,23,42,.65);z-index:100;
+  display:none;align-items:center;justify-content:center;padding:16px;
+  backdrop-filter:blur(4px);
+}
+.modal.open{display:flex}
+.modal-card{
+  background:#fff;border-radius:20px;width:100%;max-width:1000px;
+  max-height:92vh;display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.4);
+}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 22px;background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;
+}
+.modal-head h2{font-size:16.5px;font-weight:800;display:flex;align-items:center;gap:9px}
+.modal-close{font-size:26px;line-height:1;opacity:.8;transition:.2s}
+.modal-close:hover{opacity:1;transform:rotate(90deg)}
+
+.login-box{padding:40px 22px;text-align:center;max-width:340px;margin:0 auto}
+.login-box i{font-size:44px;color:var(--primary-2);margin-bottom:14px}
+.login-box h3{font-size:17px;margin-bottom:6px}
+.login-box p{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.login-box input{
+  width:100%;padding:11px 14px;border-radius:11px;border:1.5px solid var(--line);
+  text-align:center;font-size:15px;letter-spacing:3px;margin-bottom:12px;outline:none;
+}
+.login-box input:focus{border-color:var(--primary-2)}
+
+.dash-body-wrap{display:none;flex:1;overflow:hidden}
+.dash-body-wrap.show{display:flex}
+.dash-menu{
+  width:190px;flex-shrink:0;background:#f8fafc;border-left:1px solid var(--line);
+  padding:14px 10px;display:flex;flex-direction:column;gap:5px;overflow-y:auto;
+}
+.dash-menu button{
+  text-align:right;padding:10px 13px;border-radius:10px;font-size:13px;
+  font-weight:600;color:#475569;display:flex;align-items:center;gap:9px;transition:.18s;
+}
+.dash-menu button:hover{background:#e2e8f0}
+.dash-menu button.active{background:var(--primary-2);color:#fff}
+.dash-main{flex:1;padding:20px;overflow-y:auto}
+.tab{display:none}
+.tab.active{display:block}
+
+.stats{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.stat{
+  background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px;
+}
+.stat i{font-size:20px;color:var(--primary-2);margin-bottom:8px}
+.stat b{display:block;font-size:24px;font-weight:800}
+.stat small{font-size:12px;color:var(--muted)}
+
+.admin-form{display:grid;gap:12px;grid-template-columns:1fr 1fr;max-width:700px}
+.admin-form .field.full{grid-column:1/-1}
+.admin-form select{
+  padding:11px 14px;border-radius:11px;border:1.5px solid var(--line);
+  font-size:13.5px;background:#f8fafc;outline:none;
+}
+.admin-form select:focus{border-color:var(--primary-2)}
+
+.manage-list{display:flex;flex-direction:column;gap:10px}
+.manage-item{
+  display:flex;align-items:center;gap:12px;padding:11px;border-radius:12px;
+  border:1px solid var(--line);background:#f8fafc;
+}
+.manage-item img{width:56px;height:44px;object-fit:cover;border-radius:8px;flex-shrink:0}
+.manage-item .ph{width:56px;height:44px;border-radius:8px;background:#e2e8f0;display:flex;align-items:center;justify-content:center;color:#94a3b8;flex-shrink:0}
+.manage-item div{flex:1;min-width:0}
+.manage-item h5{font-size:13.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.manage-item small{font-size:11.5px;color:var(--muted)}
+.icon-btn{
+  width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  background:#fee2e2;color:#ef4444;transition:.2s;
+}
+.icon-btn:hover{background:#ef4444;color:#fff}
+
+.msg-item{
+  border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:10px;background:#f8fafc;
+}
+.msg-item h5{font-size:13.5px;font-weight:700;margin-bottom:3px}
+.msg-item small{font-size:11.5px;color:var(--muted)}
+.msg-item p{font-size:13px;margin-top:7px;color:#334155}
+
+/* ================= ریسپانسیو ================= */
+@media(max-width:860px){
+  .contact-wrap{grid-template-columns:1fr}
+  .brand h1{font-size:20px}
+  .brand p{display:none}
+  .header-tools .clock{display:none}
+  .dash-body-wrap.show{flex-direction:column}
+  .dash-menu{width:100%;flex-direction:row;overflow-x:auto;border-left:0;border-bottom:1px solid var(--line)}
+  .dash-menu button{white-space:nowrap}
+  .admin-form{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .logo-box{width:58px;height:58px}
+  .brand h1{font-size:17px}
+  .btn-ghost span{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== هدر ==================== -->
+<header class="site-header">
+  <div class="header-inner container">
+
+    <!-- لوگو: گوشه سمت راست -->
+    <div class="logo-wrap">
+      <label class="logo-box" for="logoInput" title="بارگذاری لوگو">
+        <img id="logoImg" alt="لوگو" hidden>
+        <span class="logo-ph" id="logoPh">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <small>لوگو</small>
+        </span>
+      </label>
+      <input type="file" id="logoInput" accept="image/*" hidden>
+    </div>
+
+    <div class="brand">
+      <h1>پایگاه خبری <span>زاگرس</span></h1>
+      <p>اخبار لحظه‌ای ایران و جهان</p>
+    </div>
+
+    <div class="header-tools">
+      <div class="clock" id="clock"></div>
+      <button class="btn btn-ghost" id="openDashboard">
+        <i class="fa-solid fa-gauge-high"></i><span>داشبورد مدیریتی</span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- نوار دسته‌بندی‌ها -->
+  <nav class="cat-nav">
+    <div class="container nav-inner" id="catNav"></div>
+  </nav>
+</header>
+
+<!-- ==================== محتوای اصلی ==================== -->
+<main class="container">
+
+  <!-- بارگذاری عکس وسط سایت -->
+  <section class="hero">
+    <div class="hero-box" id="heroBox">
+      <img id="heroImg" alt="تصویر اصلی" hidden>
+      <div class="hero-ph" id="heroPh">
+        <i class="fa-regular fa-image"></i>
+        <h3>بارگذاری تصویر اصلی سایت</h3>
+        <p>برای انتخاب عکس کلیک کنید — JPG / PNG / WEBP</p>
+      </div>
+      <button class="hero-del" id="heroDel" title="حذف تصویر">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+    <input type="file" id="heroInput" accept="image/*" hidden>
+  </section>
+
+  <!-- اخبار -->
+  <section>
+    <div class="section-head">
+      <h2>آخرین اخبار</h2>
+      <button class="clear-filter" id="clearFilter">حذف فیلتر ✕</button>
+    </div>
+    <div class="news-grid" id="newsGrid"></div>
+  </section>
+
+  <!-- بخش پزشکی با زیرمجموعه بیماری‌ها -->
+  <section class="medical-section">
+    <div class="section-head">
+      <h2><i class="fa-solid fa-stethoscope" style="color:#ef4444"></i> پزشکی — دسته‌بندی بیماری‌ها</h2>
+    </div>
+    <div class="disease-grid" id="diseaseGrid"></div>
+  </section>
+
+  <!-- تماس با ما / ارسال پیام به ایمیل -->
+  <section class="contact">
+    <div class="section-head">
+      <h2><i class="fa-solid fa-envelope" style="color:#2563eb"></i> ارسال پیام به ایمیل</h2>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>با ما در ارتباط باشید</h3>
+        <p>پیشنهادها، اخبار و سوژه‌های خبری خود را برای تحریریه ارسال کنید.</p>
+        <ul>
+          <li><i class="fa-solid fa-at"></i> info@zagrosnews.ir</li>
+          <li><i class="fa-solid fa-phone"></i> ۰۲۱-۱۲۳۴۵۶۷۸</li>
+          <li><i class="fa-solid fa-location-dot"></i> تهران، خیابان آزادی، پلاک ۱۲</li>
+          <li><i class="fa-regular fa-clock"></i> پاسخگویی: ۸ تا ۲۰</li>
+        </ul>
+      </div>
+
+      <form id="contactForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="cName">نام و نام خانوادگی</label>
+            <input type="text" id="cName" required placeholder="مثلاً علی رضایی">
+          </div>
+          <div class="field">
+            <label for="cEmail">ایمیل شما</label>
+            <input type="email" id="cEmail" required placeholder="you@example.com">
+          </div>
+          <div class="field full">
+            <label for="cSubject">موضوع</label>
+            <input type="text" id="cSubject" required placeholder="موضوع پیام">
+          </div>
+          <div class="field full">
+            <label for="cMessage">متن پیام</label>
+            <textarea id="cMessage" required placeholder="پیام خود را بنویسید..."></textarea>
+          </div>
+          <div class="field full">
+            <button type="submit" class="btn btn-primary" style="justify-content:center">
+              <i class="fa-solid fa-paper-plane"></i> ارسال پیام
+            </button>
+            <p class="form-note">
+              با کلیک روی «ارسال پیام»، برنامه ایمیل شما باز می‌شود و پیام آماده ارسال به
+              <b>info@zagrosnews.ir</b> خواهد بود.
+            </p>
+            <div class="alert" id="alertBox">
+              <i class="fa-solid fa-circle-check"></i> پیام شما ثبت شد و پنجره ایمیل باز شد.
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>پایگاه خبری زاگرس</strong> — تمامی حقوق محفوظ است © ۱۴۰۴
+    <br>
+    <small>طراحی شده با HTML / CSS / JavaScript</small>
+  </div>
+</footer>
+
+<!-- ==================== داشبورد مدیریتی ==================== -->
+<div class="modal" id="dashModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2><i class="fa-solid fa-gauge-high"></i> داشبورد مدیریتی</h2>
+      <button class="modal-close" id="closeDash">&times;</button>
+    </div>
+
+    <!-- ورود -->
+    <div class="login-box" id="loginBox">
+      <i class="fa-solid fa-lock"></i>
+      <h3>ورود مدیر</h3>
+      <p>رمز عبور پیش‌فرض: <b>1234</b></p>
+      <input type="password" id="passInput" placeholder="••••" maxlength="8">
+      <button class="btn btn-primary" id="loginBtn" style="width:100%;justify-content:center">
+        <i class="fa-solid fa-right-to-bracket"></i> ورود به داشبورد
+      </button>
+    </div>
+
+    <!-- محتوای داشبورد -->
+    <div class="dash-body-wrap" id="dashBody">
+      <aside class="dash-menu">
+        <button data-tab="stats" class="active"><i class="fa-solid fa-chart-pie"></i> آمار</button>
+        <button data-tab="add"><i class="fa-solid fa-plus"></i> افزودن خبر</button>
+        <button data-tab="manage"><i class="fa-solid fa-list"></i> مدیریت اخبار</button>
+        <button data-tab="messages"><i class="fa-solid fa-envelope"></i> پیام‌ها</button>
+        <button data-tab="settings"><i class="fa-solid fa-gear"></i> تنظیمات</button>
+      </aside>
+
+      <div class="dash-main">
+
+        <!-- آمار -->
+        <div class="tab active" id="tab-stats">
+          <div class="stats">
+            <div class="stat">
+              <i class="fa-solid fa-newspaper"></i>
+              <b id="stNews">0</b><small>تعداد اخبار</small>
+            </div>
+            <div class="stat">
+              <i class="fa-solid fa-envelope-open-text"></i>
+              <b id="stMsgs">0</b><small>پیام‌های دریافتی</small>
+            </div>
+            <div class="stat">
+              <i class="fa-solid fa-image"></i>
+              <b id="stImg">0</b><small>تصاویر بارگذاری‌شده</small>
+            </div>
+            <div class="stat">
+              <i class="fa-solid fa-layer-group"></i>
+              <b id="stCats">0</b><small>دسته‌بندی فعال</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- افزودن خبر -->
+        <div class="tab" id="tab-add">
+          <form class="admin-form" id="newsForm">
+            <div class="field full">
+              <label>عنوان خبر</label>
+              <input type="text" id="nTitle" required placeholder="عنوان خبر را وارد کنید">
+            </div>
+            <div class="field">
+              <label>دسته‌بندی</label>
+              <select id="nCat"></select>
+            </div>
+            <div class="field">
+              <label>زیرمجموعه (برای پزشکی)</label>
+              <select id="nSub"><option value="">— بدون زیرمجموعه —</option></select>
+            </div>
+            <div class="field full">
+              <label>متن خبر</label>
+              <textarea id="nContent" required placeholder="متن کامل خبر..." style="min-height:90px"></textarea>
+            </div>
+            <div class="field full">
+              <label>تصویر خبر (اختیاری)</label>
+              <input type="file" id="nImage" accept="image/*">
+            </div>
+            <div class="field full">
+              <button type="submit" class="btn btn-primary" style="justify-content:center">
+                <i class="fa-solid fa-cloud-arrow-up"></i> انتشار خبر
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- مدیریت اخبار -->
+        <div class="tab" id="tab-manage">
+          <div class="manage-list" id="manageList"></div>
+        </div>
+
+        <!-- پیام‌ها -->
+        <div class="tab" id="tab-messages">
+          <div id="msgList"></div>
+        </div>
+
+        <!-- تنظیمات -->
+        <div class="tab" id="tab-settings">
+          <p style="font-size:13.5px;color:#64748b;margin-bottom:16px">
+            از این بخش می‌توانید لوگو و تصویر اصلی سایت را بارگذاری یا حذف کنید.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="document.getElementById('logoInput').click()">
+              <i class="fa-solid fa-image"></i> تغییر لوگو
+            </button>
+            <button class="btn btn-primary" onclick="document.getElementById('heroInput').click()">
+              <i class="fa-regular fa-image"></i> تغییر تصویر اصلی
+            </button>
+            <button class="btn btn-danger" id="resetAll">
+              <i class="fa-solid fa-trash-can"></i> پاک‌سازی همه داده‌ها
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   ۱) داده‌ها و ابزارها
+============================================================ */
+const DB = {
+  get(k, d){ try{ const v = JSON.parse(localStorage.getItem(k)); return v === null ? d : v; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){ console.warn('حافظه پر است'); } }
+};
+
+const CATEGORIES = [
+  { id:'economic',  name:'اقتصادی',  icon:'fa-chart-line',    color:'#16a34a' },
+  { id:'social',    name:'اجتماعی',  icon:'fa-users',         color:'#0ea5e9' },
+  { id:'political', name:'سیاسی',    icon:'fa-landmark',      color:'#6366f1' },
+  { id:'cultural',  name:'فرهنگی',   icon:'fa-masks-theater', color:'#d946ef' },
+  { id:'sports',    name:'ورزشی',    icon:'fa-futbol',        color:'#f59e0b' },
+  { id:'medical',   name:'پزشکی',    icon:'fa-stethoscope',   color:'#ef4444' }
+];
+
+/* زیرمجموعه‌های پزشکی = بیماری‌ها */
+const DISEASES = [
+  { name:'قلب و عروق',   icon:'fa-heart-pulse',   desc:'فشار خون، سکته، آریتمی' },
+  { name:'دیابت',        icon:'fa-droplet',       desc:'قند خون، انسولین، رژیم' },
+  { name:'سرطان',        icon:'fa-ribbon',        desc:'تومور، شیمی‌درمانی' },
+  { name:'بیماری‌های تنفسی', icon:'fa-lungs',      desc:'آسم، برونشیت، کرونا' },
+  { name:'بیماری‌های عفونی', icon:'fa-virus',      desc:'ویروس، باکتری، واکسن' },
+  { name:'اعصاب و روان',  icon:'fa-brain',        desc:'اضطراب، افسردگی، آلزایمر' },
+  { name:'گوارش و کبد',   icon:'fa-stomach',      desc:'معده، روده، کبد چرب' },
+  { name:'پوست و مو',     icon:'fa-hand-dots',    desc:'آکنه، ریزش مو، اگزما' }
+];
+
+const EMAIL_TO = 'info@zagrosnews.ir';   // ← ایمیل مقصد را اینجا تغییر دهید
+const ADMIN_PASS = '1234';               // ← رمز داشبورد
+
+/* وضعیت برنامه */
+const state = {
+  news: DB.get('news', sampleNews()),
+  messages: DB.get('messages', []),
+  filter: { cat: null, sub: null }
+};
+
+function sampleNews(){
+  return [
+    { id:1, cat:'economic', sub:'', title:'رشد ۵ درصدی صادرات غیرنفتی در سه ماهه اخیر',
+      content:'بر اساس گزارش گمرک، صادرات غیرنفتی کشور در سه ماهه نخست امسال نسبت به مدت مشابه سال گذشته پنج درصد رشد داشته است.',
+      image:'', date:'۱۴۰۴/۰۳/۱۲' },
+    { id:2, cat:'political', sub:'', title:'نشست مشترک هیئت دولت و مجلس برگزار شد',
+      content:'در این نشست موضوعات مهم اقتصادی و بودجه‌ای سال آینده مورد بررسی و تبادل نظر قرار گرفت.',
+      image:'', date:'۱۴۰۴/۰۳/۱۱' },
+    { id:3, cat:'sports', sub:'', title:'تیم ملی فوتبال ایران به مرحله نیمه‌نهایی صعود کرد',
+      content:'شاگردان سرمربی تیم ملی با پیروزی دو بر یک برابر حریف خود راهی مرحله بعدی مسابقات شدند.',
+      image:'', date:'۱۴۰۴/۰۳/۱۰' },
+    { id:4, cat:'medical', sub:'قلب و عروق', title:'هشدار متخصصان درباره افزایش بیماری‌های قلبی در جوانان',
+      content:'متخصصان قلب و عروق با اشاره به تغییر سبک زندگی، بر لزوم تحرک روزانه و کاهش مصرف نمک تأکید کردند.',
+      image:'', date:'۱۴۰۴/۰۳/۰۹' },
+    { id:5, cat:'cultural', sub:'', title:'جشنواره بین‌المللی کتاب تهران آغاز به کار کرد',
+      content:'بیش از دو هزار ناشر داخلی و خارجی در این دوره از نمایشگاه حضور دارند.',
+      image:'', date:'۱۴۰۴/۰۳/۰۸' },
+    { id:6, cat:'social', sub:'', title:'افزایش آمار مشارکت مردمی در طرح‌های خیریه',
+      content:'گزارش‌ها نشان می‌دهد مشارکت شهروندان در طرح‌های خیریه در شش ماه گذشته رشد چشمگیری داشته است.',
+      image:'', date:'۱۴۰۴/۰۳/۰۷' }
+  ];
+}
+
+const esc = s => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const $ = id => document.getElementById(id);
+
+/* ============================================================
+   ۲) ساخت نوار دسته‌بندی + زیرمنوی پزشکی
+============================================================ */
+function buildNav(){
+  const nav = $('catNav');
+
+  // دکمه «همه اخبار»
+  const all = document.createElement('button');
+  all.className = 'cat-btn active';
+  all.style.setProperty('--c', '#fff');
+  all.innerHTML = '<i class="fa-solid fa-layer-group"></i> همه اخبار';
+  all.onclick = () => applyFilter(null, null);
+  nav.appendChild(all);
+
+  CATEGORIES.forEach(cat => {
+    const wrap = document.createElement('div');
+    wrap.className = 'dropdown';
+
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.style.setProperty('--c', cat.color);
+    btn.dataset.cat = cat.id;
+    btn.innerHTML = `<i class="fa-solid ${cat.icon}"></i> ${cat.name}` +
+                    (cat.id === 'medical' ? ' <i class="fa-solid fa-caret-down" style="font-size:10px"></i>' : '');
+    btn.onclick = (e) => {
+      if (cat.id === 'medical') {
+        e.stopPropagation();
+        document.querySelectorAll('.dropdown').forEach(d => d !== wrap && d.classList.remove('open'));
+        wrap.classList.toggle('open');
+      } else {
+        applyFilter(cat.id, null);
+      }
+    };
+    wrap.appendChild(btn);
+
+    // زیرمنوی بیماری‌ها
+    if (cat.id === 'medical') {
+      const menu = document.createElement('div');
+      menu.className = 'dropdown-menu';
+      const allMed = document.createElement('button');
+      allMed.innerHTML = '<i class="fa-solid fa-stethoscope" style="color:#ef4444"></i> همه اخبار پزشکی';
+      allMed.onclick = () => { applyFilter('medical', null); wrap.classList.remove('open'); };
+      menu.appendChild(allMed);
+
+      DISEASES.forEach(d => {
+        const b = document.createElement('button');
+        b.innerHTML = `<i class="fa-solid ${d.icon}"></i> ${d.name}`;
+        b.onclick = () => { applyFilter('medical', d.name); wrap.classList.remove('open'); };
+        menu.appendChild(b);
+      });
+      wrap.appendChild(menu);
+    }
+
+    nav.appendChild(wrap);
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+  });
+}
+
+/* ============================================================
+   ۳) فیلتر و رندر اخبار
+============================================================ */
+function applyFilter(cat, sub){
+  state.filter = { cat, sub };
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.cat === cat);
+    if (!b.dataset.cat) b.classList.toggle('active', cat === null);
+  });
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+
+  const hasFilter = !!(cat || sub);
+  $('clearFilter').classList.toggle('show', hasFilter);
+  renderNews();
+  window.scrollTo({ top: 400, behavior: 'smooth' });
+}
+
+function renderNews(){
+  const grid = $('newsGrid');
+  let list = [...state.news].sort((a, b) => b.id - a.id);
+
+  if (state.filter.cat) list = list.filter(n => n.cat === state.filter.cat);
+  if (state.filter.sub) list = list.filter(n => n.sub === state.filter.sub);
+
+  if (!list.length) {
+    grid.innerHTML = '<p class="empty"><i class="fa-regular fa-folder-open" style="font-size:32px;display:block;margin-bottom:10px"></i>خبری در این دسته یافت نشد.</p>';
+    return;
+  }
+
+  grid.innerHTML = list.map(n => {
+    const c = CATEGORIES.find(x => x.id === n.cat) || { name:'—', icon:'fa-tag', color:'#64748b' };
+    return `
+      <article class="news-card">
+        ${n.image ? `<div class="news-img"><img src="${n.image}" alt="${esc(n.title)}"></div>` : ''}
+        <div class="news-body">
+          <span class="badge" style="--c:${c.color}">
+            <i class="fa-solid ${c.icon}"></i> ${c.name}${n.sub ? ' / ' + esc(n.sub) : ''}
+          </span>
+          <h3>${esc(n.title)}</h3>
+          <p>${esc(n.content).slice(0, 115)}${n.content.length > 115 ? '…' : ''}</p>
+          <div class="news-foot">
+            <span><i class="fa-regular fa-calendar"></i> ${n.date}</span>
+            <span><i class="fa-regular fa-eye"></i> ${Math.floor(Math.random()*900)+100}</span>
+          </div>
+        </div>
+      </article>`;
+  }).join('');
+}
+
+/* ============================================================
+   ۴) کارت‌های بیماری (بخش پزشکی)
+============================================================ */
+function renderDiseases(){
+  $('diseaseGrid').innerHTML = DISEASES.map(d => `
+    <button class="disease-card" data-disease="${d.name}">
+      <span class="ico"><i class="fa-solid ${d.icon}"></i></span>
+      <span style="text-align:right">
+        <h4>${d.name}</h4>
+        <small>${d.desc}</small>
+      </span>
+    </button>
+  `).join('');
+
+  document.querySelectorAll('.disease-card').forEach(card => {
+    card.onclick = () => applyFilter('medical', card.dataset.disease);
+  });
+}
+
+/* ============================================================
+   ۵) بارگذاری لوگو و تصویر اصلی
+============================================================ */
+function readFile(input, cb){
+  const f = input.files[0];
+  if (!f) return;
+  if (f.size > 2.5 * 1024 * 1024) {
+    alert('حجم تصویر نباید بیشتر از ۲.۵ مگابایت باشد.');
+    input.value = '';
+    return;
+  }
+  const r = new FileReader();
+  r.onload = e => cb(e.target.result);
+  r.readAsDataURL(f);
+  input.value = '';
+}
+
+/* --- لوگو --- */
+function initLogo(){
+  const saved = DB.get('logo', null);
+  if (saved) showLogo(saved);
+
+  $('logoInput').addEventListener('change', e => {
+    readFile(e.target, data => {
+      DB.set('logo', data);
+      showLogo(data);
+      updateStats();
+    });
+  });
+}
+function showLogo(src){
+  $('logoImg').src = src;
+  $('logoImg').hidden = false;
+  $('logoPh').style.display = 'none';
+}
+
+/* --- تصویر اصلی وسط سایت --- */
+function initHero(){
+  const saved = DB.get('hero', null);
+  if (saved) showHero(saved);
+
+  const box = $('heroBox');
+
+  box.addEventListener('click', e => {
+    if (e.target.closest('#heroDel')) return;
+    $('heroInput').click();
+  });
+
+  $('heroInput').addEventListener('change', e => {
+    readFile(e.target, data => {
+      DB.set('hero', data);
+      showHero(data);
+      updateStats();
+    });
+  });
+
+  $('heroDel').addEventListener('click', e => {
+    e.stopPropagation();
+    localStorage.removeItem('hero');
+    $('heroImg').hidden = true;
+    $('heroImg').src = '';
+    $('heroPh').style.display = 'block';
+    box.classList.remove('has-img');
+    updateStats();
+  });
+}
+function showHero(src){
+  $('heroImg').src = src;
+  $('heroImg').hidden = false;
+  $('heroPh').style.display = 'none';
+  $('heroBox').classList.add('has-img');
+}
+
+/* ============================================================
+   ۶) فرم تماس — ارسال پیام به ایمیل
+============================================================ */
+function initContact(){
+  const form = $('contactForm');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const name    = $('cName').value.trim();
+    const email   = $('cEmail').value.trim();
+    const subject = $('cSubject').value.trim();
+    const message = $('cMessage').value.trim();
+
+    // ۱) ذخیره پیام در داشبورد
+    state.messages.unshift({
+      id: Date.now(),
+      name, email, subject, message,
+      date: new Date().toLocaleString('fa-IR')
+    });
+    DB.set('messages', state.messages);
+
+    // ۲) ساخت لینک mailto برای ارسال به ایمیل
+    const body = `نام فرستنده: ${name}\nایمیل: ${email}\n\n${message}`;
+    const mailto = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // باز کردن کلاینت ایمیل
+    window.location.href = mailto;
+
+    // ۳) نمایش پیام موفقیت
+    $('alertBox').classList.add('show');
+    form.reset();
+    updateStats();
+    renderMessages();
+
+    setTimeout(() => $('alertBox').classList.remove('show'), 6000);
+  });
+}
+
+/*
+  💡 اگر می‌خواهید ایمیل بدون باز شدن کلاینت ارسال شود،
+  از سرویس رایگان FormSubmit استفاده کنید:
+  فرم را به این شکل تغییر دهید:
+  <form action="https://formsubmit.co/info@zagrosnews.ir" method="POST">
+  و در JS از preventDefault استفاده نکنید.
+*/
+
+/* ============================================================
+   ۷) داشبورد مدیریتی
+============================================================ */
+function initDashboard(){
+  const modal = $('dashModal');
+
+  $('openDashboard').onclick = () => {
+    modal.classList.add('open');
+    if (sessionStorage.getItem('admin') === '1') unlockDash();
+    updateStats();
+  };
+  $('closeDash').onclick = () => modal.classList.remove('open');
+  modal.onclick = e => { if (e.target === modal) modal.classList.remove('open'); };
+
+  // ورود
+  $('loginBtn').onclick = tryLogin;
+  $('passInput').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+
+  function tryLogin(){
+    if ($('passInput').value === ADMIN_PASS) {
+      sessionStorage.setItem('admin', '1');
+      unlockDash();
+    } else {
+      $('passInput').style.borderColor = '#ef4444';
+      $('passInput').value = '';
+      $('passInput').placeholder = 'رمز اشتباه است!';
+      setTimeout(() => $('passInput').style.borderColor = '#e2e8f0', 1200);
+    }
+  }
+
+  function unlockDash(){
+    $('loginBox').style.display = 'none';
+    $('dashBody').classList.add('show');
+    renderManage();
+    renderMessages();
+    updateStats();
+  }
+
+  // تب‌ها
+  document.querySelectorAll('.dash-menu button').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.dash-menu button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      $('tab-' + btn.dataset.tab).classList.add('active');
+    };
+  });
+
+  // پاک‌سازی
+  $('resetAll').onclick = () => {
+    if (confirm('همه اخبار، تصاویر، لوگو و پیام‌ها حذف شوند؟')) {
+      localStorage.clear();
+      location.reload();
+    }
+  };
+}
+
+/* --- فرم افزودن خبر --- */
+function initNewsForm(){
+  const catSel = $('nCat');
+  const subSel = $('nSub');
+
+  CATEGORIES.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c.id; o.textContent = c.name;
+    catSel.appendChild(o);
+  });
+
+  catSel.onchange = () => {
+    subSel.innerHTML = '<option value="">— بدون زیرمجموعه —</option>';
+    if (catSel.value === 'medical') {
+      DISEASES.forEach(d => {
+        const o = document.createElement('option');
+        o.value = d.name; o.textContent = d.name;
+        subSel.appendChild(o);
+      });
+    }
+  };
+
+  $('newsForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const title   = $('nTitle').value.trim();
+    const cat     = catSel.value;
+    const sub     = subSel.value;
+    const content = $('nContent').value.trim();
+    const fileInput = $('nImage');
+
+    const save = (imgData) => {
+      state.news.push({
+        id: Date.now(),
+        cat, sub, title, content,
+        image: imgData || '',
+        date: new Date().toLocaleDateString('fa-IR')
+      });
+      DB.set('news', state.news);
+
+      e.target.reset();
+      subSel.innerHTML = '<option value="">— بدون زیرمجموعه —</option>';
+
+      renderNews();
+      renderManage();
+      updateStats();
+      alert('✅ خبر با موفقیت منتشر شد.');
+    };
+
+    if (fileInput.files[0]) {
+      readFile(fileInput, save);
+    } else {
+      save('');
+    }
+  });
+}
+
+/* --- لیست مدیریت اخبار --- */
+function renderManage(){
+  const wrap = $('manageList');
+  const list = [...state.news].sort((a, b) => b.id - a.id);
+
+  if (!list.length) {
+    wrap.innerHTML = '<p class="empty">هنوز خبری ثبت نشده است.</p>';
+    return;
+  }
+
+  wrap.innerHTML = list.map(n => {
+    const c = CATEGORIES.find(x => x.id === n.cat) || {};
+    return `
+      <div class="manage-item">
+        ${n.image
+          ? `<img src="${n.image}" alt="">`
+          : `<span class="ph"><i class="fa-regular fa-image"></i></span>`}
+        <div>
+          <h5>${esc(n.title)}</h5>
+          <small>${c.name || '—'}${n.sub ? ' / ' + esc(n.sub) : ''} — ${n.date}</small>
+        </div>
+        <button class="icon-btn" data-del="${n.id}" title="حذف">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>`;
+  }).join('');
+
+  wrap.querySelectorAll('[data-del]').forEach(btn => {
+    btn.onclick = () => {
+      const id = Number(btn.dataset.del);
+      if (!confirm('این خبر حذف شود؟')) return;
+      state.news = state.news.filter(n => n.id !== id);
+      DB.set('news', state.news);
+      renderNews();
+      renderManage();
+      updateStats();
+    };
+  });
+}
+
+/* --- لیست پیام‌ها --- */
+function renderMessages(){
+  const wrap = $('msgList');
+  if (!state.messages.length) {
+    wrap.innerHTML = '<p class="empty">پیامی دریافت نشده است.</p>';
+    return;
+  }
+  wrap.innerHTML = state.messages.map(m => `
+    <div class="msg-item">
+      <h5>${esc(m.subject)}</h5>
+      <small><i class="fa-regular fa-user"></i> ${esc(m.name)} — ${esc(m.email)} — ${m.date}</small>
+      <p>${esc(m.message)}</p>
+    </div>
+  `).join('');
+}
+
+/* --- آمار --- */
+function updateStats(){
+  const hasHero = !!localStorage.getItem('hero');
+  const hasLogo = !!localStorage.getItem('logo');
+  $('stNews').textContent  = state.news.length;
+  $('stMsgs').textContent  = state.messages.length;
+  $('stImg').textContent   = (hasHero ? 1 : 0) + (hasLogo ? 1 : 0) +
+                             state.news.filter(n => n.image).length;
+  $('stCats').textContent  = new Set(state.news.map(n => n.cat)).size;
+}
+
+/* ============================================================
+   ۸) ساعت زنده
+============================================================ */
+function startClock(){
+  const tick = () => {
+    const now = new Date();
+    const time = now.toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    const date = now.toLocaleDateString('fa-IR', { weekday:'long', day:'numeric', month:'long' });
+    $('clock').innerHTML = `<i class="fa-regular fa-clock"></i> ${time} — ${date}`;
+  };
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* ============================================================
+   ۹) راه‌اندازی
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  buildNav();
+  renderNews();
+  renderDiseases();
+  initLogo();
+  initHero();
+  initContact();
+  initDashboard();
+  initNewsForm();
+  renderMessages();
+  updateStats();
+  startClock();
+
+  $('clearFilter').onclick = () => applyFilter(null, null);
+});
+</script>
+
+</body>
+</html>
